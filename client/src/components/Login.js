@@ -35,7 +35,7 @@ const Login = () => {
         console.log("login succesfull");
         localStorage.setItem("userInfo", JSON.stringify(data));
         
-        navigate('/home');
+        navigate('/products');
       } catch (error) {
         console.log(error);
        }

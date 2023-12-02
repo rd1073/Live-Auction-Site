@@ -1,5 +1,4 @@
-import Home from './components/Home';
-import AddProduct from './components/AddProduct';
+ import AddProduct from './components/AddProduct';
 import BidProduct from './components/BidProduct';
 import Products from './components/Products';
 import Nav from './components/Nav';
@@ -22,8 +21,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
 
-          <Route path="/home" element={<Home />} />
-
+ 
           <Route path="/products" element={<Products />} />
           <Route
             path="/products/add"

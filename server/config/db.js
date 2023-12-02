@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    startingBid: {
+    price: {
       type: Number,
       required: true,
     }, // this acts as the initial price
