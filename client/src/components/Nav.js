@@ -19,7 +19,7 @@ const Nav = ({ socket }) => {
     socket.on('bidProductResponse', (data) => {
       setNotification(
         `@${data.lastbidder} just bid ${data.title} for $${Number(
-          data.currentBid
+          data.userInput
         ).toLocaleString()}`
       );
     });
