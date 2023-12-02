@@ -138,6 +138,20 @@ app.get('/api', async (req, res) => {
   }
  });
 
+ app.get('/profile/:username', async (req, res) => {
+  const { username } = req.params;
+
+  // Fetch user details from the database using the username
+  // Replace this with your actual database query
+  const user = await User.findOne({ username });
+
+  if (user) {
+    res.json(user);
+    console.log(user); // Return user details as JSON
+  } else {
+    res.status(404).json({ message: 'User not found' });
+  }
+});
 
  
 

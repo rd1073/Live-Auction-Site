@@ -12,18 +12,7 @@ const Products = () => {
 
   const handleBidBtn = (product) =>
   navigate(`/products/bid/${product.title}/${product.price}`);
-/*
-  useEffect(() => {
-    const fetchProducts = () => {
-      fetch('http://localhost:4000/api')
-        .then((res) => res.json())
-        .then((data) => {
-          setProducts(data.products);
-          setLoading(false);
-        });
-    };
-    fetchProducts();
-  }, []);*/
+
 
   useEffect(() => {
     // Fetch products when the component mounts

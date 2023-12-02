@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 
 import socketIO from 'socket.io-client';
+import Profile from './components/Profile';
  const socket = socketIO.connect('http://localhost:4000');
 
 
@@ -28,10 +29,15 @@ function App() {
             path="/products/add"
             element={<AddProduct socket={socket} />}
           />
+
           
           <Route
             path="/products/bid/:title/:price"
             element={<BidProduct socket={socket} />}
+          />
+          <Route
+            path="/profile/:username"
+            element={<Profile socket={socket} />}
           />
         </Routes>
       </div>
