@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
-
 import { styled } from '@mui/system';
+import { Container, Row, Col, Card, Table, Button } from 'react-bootstrap';
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -69,26 +70,46 @@ const Products = () => {
         <p>   </p>
         <p>   </p>
         <p>   </p>
-
-      <ul>
-        {products.map((product) => (
-          <li key={product._id}>
-            <h3>{product.title}</h3>
-            <p>{product.description}</p>
-            <p>Price: ${product.price.toFixed(2)}</p>
-            <p>Seller: {product.seller}</p>
-            <p>Current Bid: {product.currentBid}</p>
-
-            <button onClick={() => handleBidBtn(product)}>Edit</button>
-
-            <hr />
-          </li>
-        ))}
-      </ul>
+ 
+          
+        <Container>
+      <Table striped bordered hover responsive>
+        <tbody>
+          {products.map((product, index) => (
+            // Create a new row for every third product
+            index % 3 === 0 ? (
+              <tr key={product._id} style={{ width: '30%', paddingRight: '30%' }}>
+                {[0, 1, 2].map((offset) => (
+                  <td key={offset}>
+                    {products[index + offset] && (
+                      <Card>
+                        <Card.Body>
+                          <Card.Title>{products[index + offset].title}</Card.Title>
+                          <Card.Text>{products[index + offset].description}</Card.Text>
+                          <Card.Text>Price: ${products[index + offset].price.toFixed(2)}</Card.Text>
+                          <Card.Text>Seller: {products[index + offset].seller}</Card.Text>
+                          <Card.Text>Current Bid: {products[index + offset].currentBid}</Card.Text>
+                          <Button variant="info" // Use Bootstrap variant classes
+                            style={{ marginTop: '10px !important' }} onClick={() => handleBidBtn(products[index + offset])}>BID</Button>
+                          <hr />
+                        </Card.Body>
+                      </Card>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ) : null
+          ))}
+        </tbody>
+      </Table>
+                    </Container>
+ 
+       
+      </div>
       </div>
 
  
-    </div>
+     
   )
 }
 
