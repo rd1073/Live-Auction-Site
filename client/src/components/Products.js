@@ -49,7 +49,9 @@ const Products = () => {
   };
   return (
     <div>
-      <h1>Home Page</h1>
+      <p></p>
+      <h1 style={{ textAlign: 'center',  top: '22%' }}>Products</h1>
+
       <div className="table__container">
       <Link to="/products/add" className="products__cta">
           ADD PRODUCTS
