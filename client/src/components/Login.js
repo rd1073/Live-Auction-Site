@@ -1,15 +1,44 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom'; // Assuming you're using React Router for navigation
-
-
 
 
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
+      if (!username || !password) {
+        console.log("please fill all the fields");
+         return;
+      }
+  
+      try {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+          },
+        };
+        const { data } = await axios.post(
+          "http://localhost:4000/api/user/login",
+          {
+          
+            username,
+            password,
+            
+          },
+          config
+        );
+        console.log(data);
+        console.log("login succesfull");
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        
+        navigate('/home');
+      } catch (error) {
+        console.log(error);
+       }
 
     };
 
