@@ -40,8 +40,31 @@ socketIO.on('connection', (socket) => {
     console.log('🔥: A user disconnected');
   });
 
-socket.on('addProduct', (data) => {
-  console.log(data); //logs the message from the client
+socket.on('addProduct', async (data) => {
+  console.log(data); 
+  try {
+    // Check if data is valid
+    if (!data.title || !data.description || !data.price || !data.seller) {
+      console.log(`Invalid product data received from client: ${socket.id}`);
+      return;
+    }
+
+    // Create a new product instance
+    const newProduct = new Product({
+      title: data.title,
+      description: data.description,
+      price: data.price, 
+      seller: data.seller,
+    });
+
+    // Save the product to the database
+    await newProduct.save();
+
+    console.log('Product saved to the database:', newProduct);
+
+    } catch (error) {
+    console.error('Error handling addProduct event:', error.message);
+  }
 });
 });
 

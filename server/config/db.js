@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
       default: 0,
     },
     seller: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: 'User',
       required: true,
     },
