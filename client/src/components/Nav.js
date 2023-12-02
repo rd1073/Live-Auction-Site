@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Nav = () => {
+
+const Nav = ({ socket }) => {
+  const [notification, setNotification] = useState('');
+
+  useEffect(() => {
+    socket.on('addProductResponse', (data) => {
+      setNotification(
+        `@${data.seller} just added ${data.title} worth $${Number(
+          data.price
+        ).toLocaleString()}`
+      );
+    });
+  }, [socket]);
+
+
+  useEffect(() => {
+    socket.on('bidProductResponse', (data) => {
+      setNotification(
+        `@${data.lastbidder} just bid ${data.title} for $${Number(
+          data.currentBid
+        ).toLocaleString()}`
+      );
+    });
+  }, [socket]);
+
+
   return (
     <nav className="navbar">
       <div className="header">
@@ -8,7 +33,7 @@ const Nav = () => {
       </div>
 
       <div>
-        <p style={{ color: 'red' }}>My notifications are here</p>
+        <p style={{ color: 'red' }}>{notification}</p>
       </div>
     </nav>
   );

@@ -61,7 +61,8 @@ socket.on('addProduct', async (data) => {
     await newProduct.save();
 
     console.log('Product saved to the database:', newProduct);
-
+    socket.broadcast.emit('addProductResponse', data);
+  
     } catch (error) {
     console.error('Error handling addProduct event:', error.message);
   }
@@ -84,8 +85,13 @@ socket.on('bidProduct', async(data) => {
     if(userInput>=product.currentBid){
       product.lastbidder = lastbidder || "None";
       product.currentBid = userInput;
+      socket.broadcast.emit('bidProductResponse', data);
 
-    } else{
+
+    }
+    
+    
+    else{
       console.log("Need to increase the bid amount");
     }
       
