@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const { User, Product}=require("./config/db")
-
+const userRoutes=require("./routes/userRoutes");
+ 
 const app = express();
 const PORT = 4000;
 
@@ -11,6 +12,18 @@ const PORT = 4000;
 const http = require('http').Server(app);
 const cors = require('cors');
 app.use(express.json());
+app.use(cors());
+
+
+
+app.use(
+    cors({
+      origin: "http://localhost:3000",
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      // <-- location of the react app were connecting to
+      credentials: true,
+    })
+  );
 app.use(cors());
 
 
@@ -29,11 +42,13 @@ socketIO.on('connection', (socket) => {
 });
 
 
-app.get('/api', (req, res) => {
-  res.json({
-    message: 'Hello world',
-  });
-});
+
+app.use("/api/user", userRoutes);
+
+
+
+
+ 
 
 http.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
