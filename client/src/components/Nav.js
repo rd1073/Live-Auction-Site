@@ -1,11 +1,17 @@
-import React from 'react'
+import React from 'react';
 
 const Nav = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <nav className="navbar">
+      <div className="header">
+        <h2>Bid Items</h2>
+      </div>
 
-export default Nav
+      <div>
+        <p style={{ color: 'red' }}>My notifications are here</p>
+      </div>
+    </nav>
+  );
+};
+
+export default Nav;

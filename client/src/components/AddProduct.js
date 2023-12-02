@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const AddProduct = () => {
+const AddProduct = ({ socket }) => {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
  console.log('userInfo:', userInfo);
 
@@ -19,14 +19,14 @@ const AddProduct = () => {
       console.log("please fill all the fields");
        return;
     }
-    try{
- 
+    
      console.log({ title, description, price, seller: userInfo.username });
-     
-
-    } catch(error){
-      console.log(error);
-    }
+     socket.emit('addProduct', {
+      title,
+      description,
+      price,
+      seller: userInfo.username,
+    });
        
     navigate('/products');
   };

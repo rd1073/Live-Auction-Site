@@ -39,9 +39,11 @@ socketIO.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('🔥: A user disconnected');
   });
+
+socket.on('addProduct', (data) => {
+  console.log(data); //logs the message from the client
 });
-
-
+});
 
 app.use("/api/user", userRoutes);
 
