@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Alert from '@mui/material/Alert';
 
 
 const Nav = ({ socket }) => {
@@ -29,11 +30,13 @@ const Nav = ({ socket }) => {
   return (
     <nav className="navbar">
       <div className="header">
-        <h2>Bid Items</h2>
+        <h2>Live Auction System</h2>
       </div>
 
       <div>
-        <p style={{ color: 'red' }}>{notification}</p>
+        <p style={{ color: 'red' }}>
+           <Alert severity="info">{notification}</Alert>
+        </p>
       </div>
     </nav>
   );
