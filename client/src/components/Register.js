@@ -34,7 +34,7 @@ const Register = () => {
       );
       console.log(data);
       console.log("regitration succesful");
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      sessionStorage.setItem("userInfo", JSON.stringify(data));
       
       navigate('/login');
     } catch (error) {

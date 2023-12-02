@@ -41,7 +41,7 @@ const Products = () => {
 
 
   const handleLogout = () => {
-    localStorage.removeItem('userInfo');
+    sessionStorage.removeItem('userInfo');
 
     // Redirect to the login page after logout
     navigate('/login');

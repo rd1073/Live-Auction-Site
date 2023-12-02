@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AddProduct = ({ socket }) => {
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
  console.log('userInfo:', userInfo);
 
 

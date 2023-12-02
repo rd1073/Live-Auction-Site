@@ -33,7 +33,7 @@ const Login = () => {
         );
         console.log(data);
         console.log("login succesfull");
-        localStorage.setItem("userInfo", JSON.stringify(data));
+        sessionStorage.setItem("userInfo", JSON.stringify(data));
         
         navigate('/products');
       } catch (error) {
