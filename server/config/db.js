@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
     lastbidder: {
       type: String,
       ref: 'User',
-      default:"None"
+      
     },
    });
   

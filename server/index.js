@@ -82,7 +82,7 @@ socket.on('bidProduct', async(data) => {
     }
 
     
-      product.lastBidder = lastbidder;
+      product.lastbidder = lastbidder || "None";
       product.currentBid = userInput;
 
       // Save the updated product to the database
