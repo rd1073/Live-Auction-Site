@@ -124,6 +124,20 @@ app.get('/api', async (req, res) => {
   }
  });
 
+ app.get('/apicurbid', async (req, res) => {
+  try {
+    // Fetch all products from the database
+    const products = await Product.find();
+
+    // Return the products as JSON
+    res.json(products);
+    //console.log(products);
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+ });
+
 
  
 

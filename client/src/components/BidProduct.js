@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Navigation from '../components/Navigation';
+import axios from "axios";
 
 
 const BidProduct = ({ socket }) => {
@@ -9,7 +10,7 @@ const BidProduct = ({ socket }) => {
   const { title, price } = useParams();
 
 
-   const [userInput, setUserInput] = useState(price);
+   const [userInput, setUserInput] = useState();
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -38,6 +39,8 @@ const BidProduct = ({ socket }) => {
         <h2>Place a Bid</h2>
         <form className="bidProduct__form" >
           <h3 className="bidProduct__name">{title}</h3>
+          <h3 className="bidProduct__name">Starting Price:{price}</h3>
+
 
           <label htmlFor="amount">Bidding Amount</label>
          {/* The error message */}
