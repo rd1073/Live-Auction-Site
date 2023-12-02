@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+ 
+import { styled } from '@mui/system';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -47,16 +48,33 @@ const Products = () => {
     navigate('/login');
 
   };
+
+  const Item = styled('div')(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#262B32' : '#fff',
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    borderRadius: 4,
+    margin: '0 20px', // Adjust the margin values as needed
+
+   
+  }));
+
   return (
     <div>
-      <p></p>
-      <h1 style={{ textAlign: 'center',  top: '22%' }}>Products</h1>
-
+        
+ 
       <div className="table__container">
-      <Link to="/products/add" className="products__cta">
+      
+        
+        <h1 style={{ textAlign: 'center',  top: '22%' }}>Products</h1>
+
+        <Link to="/products/add" className="products__cta">
           ADD PRODUCTS
         </Link>
-        <h2>Product List</h2>
+        <p>   </p>
+        <p>   </p>
+        <p>   </p>
+
       <ul>
         {products.map((product) => (
           <li key={product._id}>
