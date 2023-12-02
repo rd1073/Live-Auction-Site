@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Navigation from '../components/Navigation';
 const AddProduct = ({ socket }) => {
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
  console.log('userInfo:', userInfo);
@@ -33,6 +33,8 @@ const AddProduct = ({ socket }) => {
 
   return (
     <div>
+      <Navigation />
+      
       <div className="addproduct__container">
         <h1>Add a new product</h1>
         <form className="addProduct__form" >

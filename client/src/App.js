@@ -7,8 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 
 import socketIO from 'socket.io-client';
-import Navigation from './components/Navigation';
-const socket = socketIO.connect('http://localhost:4000');
+ const socket = socketIO.connect('http://localhost:4000');
 
 
 function App() {
@@ -16,7 +15,7 @@ function App() {
     <Router>
       <div>
         <Nav socket={socket} />
-        <Navigation />
+         
 
         <Routes>
           <Route path="/" element={<Login />} />

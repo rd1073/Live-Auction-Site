@@ -187,7 +187,7 @@ const Register = () => {
             onClick={handleRegister}
             sx={{ mt: 3, mb: 2 }}
           >
-            Login
+            Register
           </Button>
           <Grid container>
              

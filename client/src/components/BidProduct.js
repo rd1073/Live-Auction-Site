@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import Navigation from '../components/Navigation';
 
 
 const BidProduct = ({ socket }) => {
@@ -31,6 +32,8 @@ const BidProduct = ({ socket }) => {
 
   return (
     <div>
+       <Navigation />
+
       <div className="bidproduct__container">
         <h2>Place a Bid</h2>
         <form className="bidProduct__form" >

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
- 
+import Navigation from '../components/Navigation';
+
 import { styled } from '@mui/system';
 
 const Products = () => {
@@ -41,13 +42,7 @@ const Products = () => {
   };
 
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('userInfo');
-
-    // Redirect to the login page after logout
-    navigate('/login');
-
-  };
+  
 
   const Item = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#262B32' : '#fff',
@@ -62,7 +57,7 @@ const Products = () => {
   return (
     <div>
         
- 
+ <Navigation />
       <div className="table__container">
       
         
@@ -92,8 +87,7 @@ const Products = () => {
       </ul>
       </div>
 
-      <button onClick={handleLogout}>Logout</button>
-
+ 
     </div>
   )
 }
