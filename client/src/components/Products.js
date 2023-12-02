@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const Home = () => {
+const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const handleBidBtn = (product) =>
+  navigate(`/products/bid/${product.name}/${product.price}`);
+/*
+  useEffect(() => {
+    const fetchProducts = () => {
+      fetch('http://localhost:4000/api')
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(data.products);
+          setLoading(false);
+        });
+    };
+    fetchProducts();
+  }, []);*/
+
+  useEffect(() => {
+    // Fetch products when the component mounts
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/api');
+      const data = await response.json();
+
+      // Update state with the fetched products
+      setProducts(data);
+    } catch (error) {
+      console.error('Error fetching products:', error.message);
+    }
+  };
+
 
   const handleLogout = () => {
     localStorage.removeItem('userInfo');
@@ -19,46 +54,26 @@ const Home = () => {
       <Link to="/products/add" className="products__cta">
           ADD PRODUCTS
         </Link>
+        <h2>Product List</h2>
+      <ul>
+        {products.map((product) => (
+          <li key={product._id}>
+            <h3>{product.title}</h3>
+            <p>{product.description}</p>
+            <p>Price: ${product.price.toFixed(2)}</p>
+            <p>Seller: {product.seller}</p>
+            <button onClick={() => handleBidBtn(product)}>Edit</button>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Last Bidder</th>
-              <th>Creator</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          {/* Data for display, we will later get it from the server */}
-          <tbody>
-            <tr>
-              <td>Tesla Model S</td>
-              <td>$30,000</td>
-              <td>@david_show</td>
-              <td>@elon_musk</td>
-              <td>
-                <button>Edit</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Ferrari 2021</td>
-              <td>$50,000</td>
-              <td>@bryan_scofield</td>
-              <td>@david_asaolu</td>
-              <td>
-                <button>Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
+            <hr />
+          </li>
+        ))}
+      </ul>
       </div>
+
       <button onClick={handleLogout}>Logout</button>
 
     </div>
   )
 }
 
-export default Home
+export default Products;
