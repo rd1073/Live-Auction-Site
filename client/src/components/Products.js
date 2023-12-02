@@ -62,6 +62,8 @@ const Products = () => {
             <p>{product.description}</p>
             <p>Price: ${product.price.toFixed(2)}</p>
             <p>Seller: {product.seller}</p>
+            <p>Current Bid: {product.currentBid}</p>
+
             <button onClick={() => handleBidBtn(product)}>Edit</button>
 
             <hr />
