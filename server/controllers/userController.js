@@ -37,10 +37,10 @@ const loginUser = async (req, res) => {
 
 const registerUser = async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { username, password, fullname, email, sellertype,productstype } = req.body;
       console.log("Request Body:", req.body);
   
-      if (!username || !password ) {
+      if (!username || !password|| !fullname|| !email|| !sellertype|| !productstype ) {
         res.status(400).json({ error: "Please Enter all the Fields" });
         return;
       }
@@ -59,6 +59,11 @@ const registerUser = async (req, res) => {
       const newUser = new User({
         username,
         password: hashedPassword,
+        fullname,
+        email,
+        sellertype,
+        productstype,
+
       });
   
       // Save the user instance to the database
@@ -69,6 +74,11 @@ const registerUser = async (req, res) => {
       res.status(201).json({
         _id: user._id,
         username: user.username,
+        fullname: user.fullname,
+        email: user.email,
+        sellertype: user.sellertype,
+        productstype: user.productstype,
+
         token: generateToken(user._id),
       });
     } catch (err) {
