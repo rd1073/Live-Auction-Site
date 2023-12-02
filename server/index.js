@@ -41,7 +41,7 @@ socketIO.on('connection', (socket) => {
   });
 
 socket.on('addProduct', async (data) => {
-  console.log(data); 
+  //console.log(data); 
   try {
     // Check if data is valid
     if (!data.title || !data.description || !data.price || !data.seller) {
@@ -66,6 +66,35 @@ socket.on('addProduct', async (data) => {
     console.error('Error handling addProduct event:', error.message);
   }
 });
+
+
+socket.on('bidProduct', async(data) => {
+  console.log(data);
+  try {
+    const { userInput, lastbidder, title } = data;
+
+    // Find the product in the database by title
+    const product = await Product.findOne({ title });
+
+    if (!product) {
+      console.log(`Product with title ${title} not found.`);
+      return;
+    }
+
+    
+      product.lastBidder = lastbidder;
+      product.currentBid = userInput;
+
+      // Save the updated product to the database
+      await product.save();
+
+      console.log(`Bid updated for product ${title}. New bid: ${userInput}, Bidder: ${lastbidder}`);
+
+      
+  } catch (error) {
+    console.error('Error handling bidProduct event:', error.message);
+  }
+});
 });
 
 app.use("/api/user", userRoutes);
@@ -77,7 +106,7 @@ app.get('/api', async (req, res) => {
 
     // Return the products as JSON
     res.json(products);
-    console.log(products);
+    //console.log(products);
   } catch (error) {
     console.error('Error fetching products:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -90,3 +119,7 @@ app.get('/api', async (req, res) => {
 http.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+
+ 
+ 

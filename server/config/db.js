@@ -42,6 +42,11 @@ const userSchema = new mongoose.Schema({
       ref: 'User',
       required: true,
     },
+    lastbidder: {
+      type: String,
+      ref: 'User',
+      default:"None"
+    },
    });
   
   const Product = conn.model('Product', productSchema);
