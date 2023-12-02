@@ -1,4 +1,7 @@
 const express = require('express');
+const mongoose = require("mongoose");
+const { User, Product}=require("./config/db")
+
 const app = express();
 const PORT = 4000;
 
@@ -7,7 +10,7 @@ const PORT = 4000;
 //New imports
 const http = require('http').Server(app);
 const cors = require('cors');
-
+app.use(express.json());
 app.use(cors());
 
 
