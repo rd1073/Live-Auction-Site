@@ -40,7 +40,7 @@ const BidProduct = ({ socket }) => {
          {/* The error message */}
          {error && (
             <p style={{ color: 'red' }}>
-              The bidding amount must be greater than {price}
+              Increse the bidding amount
             </p>
           )}
           <input

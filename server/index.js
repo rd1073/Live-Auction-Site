@@ -81,9 +81,14 @@ socket.on('bidProduct', async(data) => {
       return;
     }
 
-    
+    if(userInput>=product.currentBid){
       product.lastbidder = lastbidder || "None";
       product.currentBid = userInput;
+
+    } else{
+      console.log("Need to increase the bid amount");
+    }
+      
 
       // Save the updated product to the database
       await product.save();
