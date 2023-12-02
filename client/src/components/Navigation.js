@@ -26,8 +26,8 @@ const Navigation = () => {
   return (
     <div>
       <Stack direction="row" spacing={3}>
-      <Link to="/products">
-      <Button>My Products</Button></Link>
+      {/*<Link to="/products">
+      <Button>My Products</Button></Link>*/}
       <Link to="/products">
       <Button >Products</Button></Link>
       
