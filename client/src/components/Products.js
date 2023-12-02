@@ -8,7 +8,7 @@ const Products = () => {
   const navigate = useNavigate();
 
   const handleBidBtn = (product) =>
-  navigate(`/products/bid/${product.name}/${product.price}`);
+  navigate(`/products/bid/${product.title}/${product.price}`);
 /*
   useEffect(() => {
     const fetchProducts = () => {
