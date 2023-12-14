@@ -11,6 +11,8 @@ const Profile = () => {
   
     const { username } = useParams();
   const [userDetails, setUserDetails] = useState();
+  const [products, setProducts] = useState([]);
+
  
   useEffect(() => {
     // Fetch user details from the server
@@ -23,16 +25,22 @@ const Profile = () => {
       });
   }, [username]);
 
+  
+
   useEffect(() => {
-    // Fetch user details from the server
-    axios.get(`http://localhost:4000/showproducts/${username}`)
-      .then((response) => {
-        setUserDetails(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching user details:', error);
-      });
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4000/showproducts/${username}`);
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error.message);
+      }
+    };
+
+    fetchProducts();
   }, [username]);
+
+
 
   return (
    
@@ -62,7 +70,7 @@ const Profile = () => {
    
              <div className="d-flex justify-content-center">
       <Button size="lg" variant="outline-primary">
-        Update Profile
+        Show Stats
       </Button>
     </div>
            </Card.Body>
@@ -71,6 +79,8 @@ const Profile = () => {
          
       )}
       {!userDetails && <p>Loading user details...</p>}
+
+      
     </div>
   )
 }

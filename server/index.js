@@ -152,7 +152,18 @@ app.get('/api', async (req, res) => {
 });
 
 app.get('/showproducts/:username', async (req, res) => {
-  const { username } = req.params;
+  try {
+    const { username } = req.params;
+
+    // Use Mongoose's find method to get all products where the user is the seller
+    const products = await Product.find({ seller: username });
+
+    res.json(products);
+    console.log(products);
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 
    
   
