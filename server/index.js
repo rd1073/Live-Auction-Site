@@ -151,6 +151,13 @@ app.get('/api', async (req, res) => {
   }
 });
 
+app.get('/showproducts/:username', async (req, res) => {
+  const { username } = req.params;
+
+   
+  
+});
+
  
 
 http.listen(PORT, () => {
