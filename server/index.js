@@ -169,6 +169,36 @@ app.get('/showproducts/:username', async (req, res) => {
   
 });
 
+
+app.put('/updateProfile/:username', async (req, res) => {
+  const { username } = req.params;
+  const { newFullName, newSellerType, newProductsType } = req.body;
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { username: username },
+      {
+        $set: {
+          fullName: newFullName,
+          sellertype: newSellerType,
+          productstype: newProductsType,
+          
+        },
+      },
+      { new: true, useFindAndModify: false }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error('Error updating user profile:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
  
 
 http.listen(PORT, () => {
