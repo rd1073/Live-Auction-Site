@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+
+
 import Navigation from '../components/Navigation';
 const AddProduct = ({ socket }) => {
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
@@ -37,7 +41,7 @@ const AddProduct = ({ socket }) => {
       
       <div className="addproduct__container">
         <h1>Add a new product</h1>
-        <form className="addProduct__form" >
+        {/*<form className="addProduct__form" >
         <label>
           Title:
           <input
@@ -75,8 +79,50 @@ const AddProduct = ({ socket }) => {
         <button type="button" onClick={handleAdd}>
         ADD A PRODUCT
       </button>
-      </form>
-        
+  </form>*/}
+  <div className="addProduct__form">
+   <Form>
+      <Form.Group className="mb-3" controlId="formGroupEmail">
+        <Form.Label>Product Name:</Form.Label>
+        <Form.Control type="text"
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)} 
+            />
+            
+      </Form.Group>
+      
+
+      <Form.Group className="mb-3" controlId="formGroupEmail">
+
+      <Form.Label>Product Description:</Form.Label>
+
+      <Form.Control  
+       as="textarea"  // Use textarea for multiline input
+       rows={4}     
+       
+       name="description"
+            value={description}
+            type="description"
+
+            onChange={(e) => setDescription(e.target.value)}
+            style={{ width: '70%' }}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formGroupEmail">
+
+      <Form.Label>Prics:</Form.Label>
+
+      <Form.Control  type="number"
+            name="startingBid"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+ />
+      </Form.Group>
+      <button type="button" onClick={handleAdd}>
+        ADD A PRODUCT
+      </button>
+    </Form>
+        </div>
       </div>
     </div>
   );

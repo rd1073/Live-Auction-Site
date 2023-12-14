@@ -5,13 +5,18 @@ import Nav from './components/Nav';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
+import React, { useState, useEffect } from 'react';
 
 import socketIO from 'socket.io-client';
 import Profile from './components/Profile';
- const socket = socketIO.connect('http://localhost:4000');
+const socket = socketIO.connect('http://localhost:4000');
 
 
 function App() {
+  useEffect(() => {
+    console.log('Socket connected:', socket.connected);
+    // other socket setup code...
+  }, [socket]);
   return (
     <Router>
       <div>

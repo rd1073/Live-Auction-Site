@@ -101,12 +101,23 @@ th {
 .bidproduct__container h2 {
   margin-bottom: 30px;
 }
-.addProduct__form,
+.addProduct__form{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 4rem;
+  font-size: 2rem;
+  
+  
+
+
+}
 .bidProduct__form {
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin: 0 auto;
+  margin-top: 4rem;
+  font-size: 2rem;
 }
 .addProduct__cta,
 .bidProduct__cta {
