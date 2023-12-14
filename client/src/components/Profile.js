@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Container, Row, Col, Table } from 'react-bootstrap';
 
 
 
 const Profile = () => {
   
-    const { username } = useParams();
+  const { username } = useParams();
   const [userDetails, setUserDetails] = useState();
   const [products, setProducts] = useState([]);
 
@@ -80,7 +81,24 @@ const Profile = () => {
       )}
       {!userDetails && <p>Loading user details...</p>}
 
-      
+      <Container style={{ display: 'flex', flexWrap: 'wrap' }}>
+    {products.map((product, index) => (
+      <Card key={product._id} style={{ width: '30%', marginRight: '15px', marginBottom: '15px', marginTop: '30px', fontSize : '1rem'}}>
+        <Card.Body>
+          <Card.Title style={{ fontSize : '2rem' }}>{products[index].title}</Card.Title>
+          <Card.Text style={{ fontSize : '1rem' }}>{products[index].description}</Card.Text>
+          <Card.Text style={{ fontSize : '1rem' }}>Price: ${products[index].price.toFixed(2)}</Card.Text>
+          <Card.Text style={{ fontSize : '1rem' }}>Current Bid: {products[index].currentBid}</Card.Text>
+          <Card.Text style={{ fontSize : '1rem' }}>Last Bidder: {products[index].lastbidder}</Card.Text>
+          <Card.Text style={{ fontSize: '2rem', color:'green'}}>
+                  Your price went up by{' '}
+                  {((products[index].currentBid - products[index].price) / products[index].price * 100).toFixed(2)}%
+                </Card.Text>
+          <hr />
+        </Card.Body>
+      </Card>
+    ))}
+  </Container>
     </div>
   )
 }
