@@ -15,7 +15,7 @@ const socket = socketIO.connect('http://localhost:4000');
 function App() {
   useEffect(() => {
     console.log('Socket connected:', socket.connected);
-    // other socket setup code...
+    
   }, [socket]);
   return (
     <Router>
